@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,23 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// my routes
+// group of routes
+Route::middleware(['auth', 'verified'])
+    ->prefix("admin")
+    ->name("admin.")
+    ->group(function () {
+        // create
+
+        Route::get("/projects/create", [ProjectController::class, "create"])->name("project.create");
+        Route::post("/projects", [ProjectController::class, "store"])->name("project.store");
+
+        // read
+        Route::get("/projects", [ProjectController::class, "index"])->name("project.index");
+        Route::get("/projects/{project}", [ProjectController::class, "show"])->name("project.show");
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
