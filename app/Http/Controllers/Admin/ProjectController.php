@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,6 @@ class ProjectController extends Controller
 
         $project = Project::create($data);
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.show');
     }
 }
