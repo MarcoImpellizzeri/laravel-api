@@ -28,7 +28,10 @@ class ProjectController extends Controller
     public function store(Request $request) {
         $data = $request->validate([
             'title' => 'required',
+            'image' => 'required',
             'github_url' => 'required',
+            'languages_used' => 'required',
+            'description' => 'required',
         ]);
 
         $counter = 0;
@@ -38,7 +41,7 @@ class ProjectController extends Controller
             $slug = Str::slug($data["title"]) . ($counter > 0 ? "-" . $counter : "");
 
             // cerco se esiste gia un elemento con questo slug
-            $alreadyExists = Project::whare("slug", $slug)->first();
+            $alreadyExists = Project::where("slug", $slug)->first();
 
             $counter++;
         } while ($alreadyExists); // ripeto il ciclo finche esiste gia un elemento con questo slug aggiungendo -$counter

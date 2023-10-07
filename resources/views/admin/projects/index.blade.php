@@ -10,13 +10,13 @@
             @foreach ($projects as $project)
                 <div class="col">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ $project->image }}" class="card-img-top" alt="image not found">
+                        <img src="{{ asset('public/' . $project->image) }}" class="card-img-top" alt="image not found">
                         <div class="card-body">
                             <h5 class="card-title">{{ $project->title }}</h5>
-                            <small class="card-text">Linguaggi utilizzati:{{ $project->languages_used }}</small>
+                            <small class="card-text">Linguaggi utilizzati:{{ implode(', ', $project->languages_used) }}</small>
                             <p class="card-text">{{ $project->description }}</p>
                             <div>
-                                <a href="{{ $project->githun_url }}" class="btn btn-primary">
+                                <a href="{{ $project->github_url }}" class="btn btn-primary" target="_blank">
                                     <i class="fa-brands fa-github"></i>
                                 </a>
                                 <a href="{{ route('admin.projects.show', $project->slug) }}" 
