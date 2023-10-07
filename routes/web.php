@@ -31,12 +31,12 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         // create
 
-        Route::get("/projects/create", [ProjectController::class, "create"])->name("project.create");
-        Route::post("/projects", [ProjectController::class, "store"])->name("project.store");
+        Route::get("/projects/create", [ProjectController::class, "create"])->name("projects.create");
+        Route::post("/projects", [ProjectController::class, "store"])->name("projects.store");
 
         // read
-        Route::get("/projects", [ProjectController::class, "index"])->name("project.index");
-        Route::get("/projects/{project}", [ProjectController::class, "show"])->name("project.show");
+        Route::get("/projects", [ProjectController::class, "index"])->name("projects.index");
+        Route::get("/projects/{project}", [ProjectController::class, "show"])->name("projects.show");
 });
 
 

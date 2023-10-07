@@ -14,6 +14,11 @@ class Project extends Model
     ];
 
     protected $fillable = [
-
+        'title',
+        'slug',
+        'description',
+        'image',
+        'languages_used',
+        'github_url'
     ];
 }
