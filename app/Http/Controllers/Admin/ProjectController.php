@@ -44,7 +44,7 @@ class ProjectController extends Controller
         } while ($alreadyExists); // ripeto il ciclo finche esiste gia un elemento con questo slug aggiungendo -$counter
 
         $data["slug"] = Str::slug($data["title"]);
-        $data["languages_used"] = explode(",", $data["language"]);
+        $data["languages_used"] = explode(",", $data["languages_used"]);
 
         $project = Project::create($data);
 
