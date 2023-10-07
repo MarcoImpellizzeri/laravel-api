@@ -51,7 +51,10 @@
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.projects.index') }}">progetti</a>
+                            <a class="nav-link" href="{{ route('admin.projects.index') }}">Progetti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.projects.create') }}">Aggiungi progetto</a>
                         </li>
                     </ul>
 

@@ -30,14 +30,17 @@ Route::middleware(['auth', 'verified'])
     ->name("admin.")
     ->group(function () {
         // create
-
         Route::get("/projects/create", [ProjectController::class, "create"])->name("projects.create");
         Route::post("/projects", [ProjectController::class, "store"])->name("projects.store");
 
-        // read
+        // show
         Route::get("/projects", [ProjectController::class, "index"])->name("projects.index");
         Route::get("/projects/{project}", [ProjectController::class, "show"])->name("projects.show");
-});
+
+        // update
+        Route::get("/projects/{slug}/edit", [ProjectController::class, "edit"])->name("projects.edit");
+        Route::put("/projects/{slug}", [ProjectController::class, "update"])->name("projects.update");
+    });
 
 
 Route::middleware('auth')->group(function () {
@@ -46,4 +49,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/profile', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

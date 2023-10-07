@@ -9,5 +9,8 @@
         <a href="{{ $project->github_url }}" class="btn btn-primary" target="_blank">
             <i class="fa-brands fa-github"></i>
         </a>
+        <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-primary">
+            Modifica
+        </a>
     </div>
 @endsection

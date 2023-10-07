@@ -53,4 +53,25 @@ class ProjectController extends Controller
 
         return redirect()->route('admin.projects.show', $project->slug);
     }
+
+    public function edit($slug) {
+        $project = Project::where('slug', $slug)->first();
+
+        return view("admin.projects.edit", ["project" => $project]);
+    }
+
+    public function update(Request $request, $slug) {
+        $project = Project::where('slug', $slug)->first();
+
+        $data = $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'github_url' => 'required',
+            'languages_used' => 'required',
+            'description' => 'required',
+        ]);
+
+        $project->update($data);
+        return redirect()->route('admin.projects.show', $project->slug);
+    }
 }

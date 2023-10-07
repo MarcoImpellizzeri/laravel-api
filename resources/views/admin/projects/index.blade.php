@@ -2,9 +2,7 @@
 
 @section('content')
     <div class="container pt-5">
-        <h1 class="fw-bold text-center text-uppercase">I miei Progetti</h1>
-
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-warning my-3">Aggiungi progetto</a>
+        <h1 class="fw-bold text-center text-uppercase pb-3">I miei Progetti</h1>
 
         <div class="row row-col-3">
             @foreach ($projects as $project)
