@@ -9,23 +9,27 @@ use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $projects = Project::all();
 
         return view('admin.projects.index', compact('projects'));
     }
 
-    public function show($slug) {
+    public function show($slug)
+    {
         $project = Project::where('slug', $slug)->first();
 
         return view('admin.projects.show', compact('project'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.projects.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $data = $request->validate([
             'title' => 'required',
             'image' => 'required',
@@ -33,6 +37,20 @@ class ProjectController extends Controller
             'languages_used' => 'required',
             'description' => 'required',
         ]);
+
+        // cerca di capire perche non funziona guarda nello show.blade.php
+        $percentages = [];
+
+        // Estrai le percentuali dai linguaggi utilizzati
+        foreach ($data['languages_used'] as $language) {
+            preg_match('/\d+(\.\d+)?/', $language, $matches);
+            if (!empty($matches)) {
+                $percentages[] = (float)$matches[0];
+            }
+        }
+
+        // Salva le percentuali come JSON
+        $data['percentages'] = json_encode($percentages);
 
         $counter = 0;
 
@@ -54,13 +72,15 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.show', $project->slug);
     }
 
-    public function edit($slug) {
+    public function edit($slug)
+    {
         $project = Project::where('slug', $slug)->first();
 
         return view("admin.projects.edit", ["project" => $project]);
     }
 
-    public function update(Request $request, $slug) {
+    public function update(Request $request, $slug)
+    {
         $project = Project::where('slug', $slug)->first();
 
         $data = $request->validate([
@@ -70,6 +90,8 @@ class ProjectController extends Controller
             'languages_used' => 'required',
             'description' => 'required',
         ]);
+
+        $data["languages_used"] = explode(",", $data["languages_used"]);
 
         $project->update($data);
         return redirect()->route('admin.projects.show', $project->slug);
