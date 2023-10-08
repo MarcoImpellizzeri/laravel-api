@@ -12,8 +12,17 @@
                             <img src="{{ asset($project->image) }}" class="card-img-top" alt="image not found">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $project->title }}</h5>
-                                <small class="card-text">Linguaggi
-                                    utilizzati:{{ implode(', ', $project->languages_used) }}</small>
+                                <small class="card-text">
+                                    linguaggi utilizzati:
+                                    @foreach ($project->languages_used as $index => $language)
+                                        <div style="margin-bottom: 10px;">
+                                            <div>{{ $language }}</div>
+                                            <div
+                                                style="width: {{ $project->convertedPercentages[$index] }}%; height: 5px; background-color: gray; border-radius: 5px;">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </small>
                                 <p class="card-text">{{ $project->description }}</p>
                                 <div>
                                     <a href="{{ $project->github_url }}" class="btn btn-primary" target="_blank">

@@ -2,22 +2,22 @@
 
 @section('content')
     <div class="container">
-        <h1 class="fw-bold text-center text-uppercase">{{ $project->title }}</h1>
-        <div class="language-percentages">
-            <h2>Linguaggi e Percentuali:</h2>
-            @foreach ($languages_used as $language)
-                <div>
-                    <span>{{ $language }}</span>
-                    <span>{{ $percentages }}%</span>
+        <h1 class="fw-bold text-center text-uppercase">{{ $projects->title }}</h1>
+        <img src="{{ asset($projects->image) }}" class="card-img-top" alt="image not found" class="img-fluid">
+        <p class="card-text">{{ $projects->description }}</p>
+        <h4>Linguaggi Utilizzati:</h4>
+        @foreach ($projects->languages_used as $index => $language)
+            <div style=" align-items: center; margin-bottom: 10px;">
+                <div>{{ $language }}</div>
+                <div
+                    style="margin-top: 2px; width: {{ $projects->convertedPercentages[$index] }}%; height: 5px; background-color: gray; border-radius: 5px;">
                 </div>
-            @endforeach
-        </div>
-        <img src="{{ asset($project->image) }}" class="card-img-top" alt="image not found" class="img-fluid">
-        <p class="card-text">{{ $project->description }}</p>
-        <a href="{{ $project->github_url }}" class="btn btn-primary" target="_blank">
+            </div>
+        @endforeach
+        <a href="{{ $projects->github_url }}" class="btn btn-primary" target="_blank">
             <i class="fa-brands fa-github"></i>
         </a>
-        <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-primary">
+        <a href="{{ route('admin.projects.edit', $projects->slug) }}" class="btn btn-primary">
             Modifica
         </a>
     </div>

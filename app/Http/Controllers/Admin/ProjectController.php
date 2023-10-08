@@ -9,18 +9,29 @@ use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
+    public function extractPercentages($languages_used){
+        return array_map(function($language){
+            return floatval(preg_replace('/[^0-9.]/', '', $language));
+        }, $languages_used);
+    }
+
     public function index()
     {
         $projects = Project::all();
+
+        foreach ($projects as $project) {
+            $project->convertedPercentages = $this->extractPercentages($project->languages_used);
+        }
 
         return view('admin.projects.index', compact('projects'));
     }
 
     public function show($slug)
     {
-        $project = Project::where('slug', $slug)->first();
+        $projects = Project::where('slug', $slug)->first();
+        $projects->convertedPercentages = $this->extractPercentages($projects->languages_used);
 
-        return view('admin.projects.show', compact('project'));
+        return view('admin.projects.show', compact('projects'));
     }
 
     public function create()
@@ -37,20 +48,6 @@ class ProjectController extends Controller
             'languages_used' => 'required',
             'description' => 'required',
         ]);
-
-        // cerca di capire perche non funziona guarda nello show.blade.php
-        $percentages = [];
-
-        // Estrai le percentuali dai linguaggi utilizzati
-        foreach ($data['languages_used'] as $language) {
-            preg_match('/\d+(\.\d+)?/', $language, $matches);
-            if (!empty($matches)) {
-                $percentages[] = (float)$matches[0];
-            }
-        }
-
-        // Salva le percentuali come JSON
-        $data['percentages'] = json_encode($percentages);
 
         $counter = 0;
 
