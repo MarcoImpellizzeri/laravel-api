@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectUpsertRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -39,15 +40,9 @@ class ProjectController extends Controller
         return view('admin.projects.create');
     }
 
-    public function store(Request $request)
+    public function store(ProjectUpsertRequest $request)
     {
-        $data = $request->validate([
-            'title' => 'required',
-            'image' => 'required',
-            'github_url' => 'required',
-            'languages_used' => 'required',
-            'description' => 'required',
-        ]);
+        $data = $request->validated();
 
         $counter = 0;
 
@@ -76,17 +71,11 @@ class ProjectController extends Controller
         return view("admin.projects.edit", ["project" => $project]);
     }
 
-    public function update(Request $request, $slug)
+    public function update(ProjectUpsertRequest $request, $slug)
     {
         $project = Project::where('slug', $slug)->first();
 
-        $data = $request->validate([
-            'title' => 'required',
-            'image' => 'required',
-            'github_url' => 'required',
-            'languages_used' => 'required',
-            'description' => 'required',
-        ]);
+        $data = $request->validated();
 
         $data["languages_used"] = explode(",", $data["languages_used"]);
 
