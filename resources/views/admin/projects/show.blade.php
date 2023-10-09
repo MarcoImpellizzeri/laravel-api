@@ -20,5 +20,12 @@
         <a href="{{ route('admin.projects.edit', $projects->slug) }}" class="btn btn-primary">
             Modifica
         </a>
+
+        <form action="{{ route('admin.projects.destroy', $projects->slug) }}" method="POST">
+            @csrf()
+            @method('DELETE')
+
+            <button class="btn btn-danger">Elimina</button>
+        </form>
     </div>
 @endsection
