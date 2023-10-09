@@ -1,3 +1,8 @@
 @use '~bootstrap/scss/bootstrap';
 @use "@fortawesome/fontawesome-free/css/all.min.css";
-@use './partials/projects_index'
+@use './partials/projects_index';
+@use './partials/projects_show';
+
+body {
+    
+}

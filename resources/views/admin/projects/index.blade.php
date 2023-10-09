@@ -7,31 +7,33 @@
         <div class="row row-col-3">
             @foreach ($projects as $project)
                 <div class="col">
-                    <div class="card">
-                        <a href="{{ route('admin.projects.show', $project->slug) }}">
+                    <a href="{{ route('admin.projects.show', $project->slug) }}" class="text-dark">
+                        <div class="card">
                             <img src="{{ asset($project->image) }}" class="card-img-top" alt="image not found">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $project->title }}</h5>
-                                <small class="card-text">
-                                    linguaggi utilizzati:
-                                    @foreach ($project->languages_used as $index => $language)
-                                        <div style="margin-bottom: 10px;">
-                                            <div>{{ $language }}</div>
-                                            <div
-                                                style="width: {{ $project->convertedPercentages[$index] }}%; height: 5px; background-color: gray; border-radius: 5px;">
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </small>
-                                <p class="card-text">{{ $project->description }}</p>
+                            <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
+                                    <h5 class="card-title">{{ $project->title }}</h5>
+                                    <p class="card-text">{{ $project->description }}</p>
+                                    <small class="card-text">
+                                        linguaggi utilizzati:
+                                        @foreach ($project->languages_used as $index => $language)
+                                            <div style="margin-bottom: 10px;">
+                                                <div>{{ $language }}</div>
+                                                <div
+                                                    style="width: {{ $project->convertedPercentages[$index] }}%; height: 5px; background-color: #0D6EFD; border-radius: 5px;">
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </small>
+                                </div>
+                                <div class="d-flex justify-content-end">
                                     <a href="{{ $project->github_url }}" class="btn btn-primary" target="_blank">
                                         <i class="fa-brands fa-github"></i>
                                     </a>
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>
