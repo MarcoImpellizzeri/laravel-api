@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="fw-bold py-3 text-uppercase">Inserisci i dati del tuo progetto</h1>
 
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf()
 
             <div class="mb-3">
@@ -23,9 +23,8 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-labal">Percorso immagine</label>
-                <input type="text" class="form-control @error('thumb') is-invalid @enderror" name="image"
-                    value="{{ old('image') }}">
+                <label class="form-labal">Carica immagien</label>
+                <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image" accept="image/*">
                 @error('image')
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror

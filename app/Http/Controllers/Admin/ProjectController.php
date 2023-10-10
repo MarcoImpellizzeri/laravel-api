@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectUpsertRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -61,7 +62,7 @@ class ProjectController extends Controller
     public function store(ProjectUpsertRequest $request)
     {
         $data = $request->validated();
-
+        $data['image'] = Storage::put('projects', $data['image']);
         $data["slug"] = $this->generateSlug($data["title"]);
         $data["languages_used"] = explode(",", $data["languages_used"]);
 
@@ -81,6 +82,16 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project = Project::where('slug', $slug)->first();
+        if (key_exists("image", $data)) {
+            // carico il nuovo file
+            // salvo in una variabile temporanea il percorso del nuovo file
+            $data['image'] = Storage::put('projects', $data['image']);
+
+            // Dopo aver caricato la nuova immagine, PRIMA di aggiornare il db,
+            // cancelliamo dallo storage il vecchio file.
+            // $post->cover_img // vecchio file
+            Storage::delete($project->image);
+        }
 
         // rigenerazione slug
         if ($data["title"] !== $project->title) {
@@ -95,6 +106,10 @@ class ProjectController extends Controller
 
     public function destroy($slug) {
         $project = Project::where('slug', $slug)->first();
+
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
 
         $project->delete();
 

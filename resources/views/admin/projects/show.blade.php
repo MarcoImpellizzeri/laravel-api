@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container my-show-container pb-5 px-0">
-        <img src="{{ asset($projects->image) }}" class="card-img-top" alt="image not found">
+        <img src="{{ asset('storage/' . $projects['image']) }}" class="card-img-top" alt="image not found">
         <div class="d-flex py-3 px-5 aling-items-center justify-content-between">
             <h1 class="fw-bold text-uppercase m-0">{{ $projects->title }}</h1>
             
             <div>
-                <a href="{{ $projects->github_url }}" class="btn btn-primary aling-self-end"
+                <a href="{{ $projects->github_url }}" class="text-black fs-2 aling-self-end"
                     target="_blank">
                     <i class="fa-brands fa-github"></i>
                 </a>

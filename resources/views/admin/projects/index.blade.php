@@ -9,7 +9,7 @@
                 <div class="col">
                     <a href="{{ route('admin.projects.show', $project->slug) }}" class="text-dark">
                         <div class="card">
-                            <img src="{{ asset($project->image) }}" class="card-img-top" alt="image not found">
+                            <img src="{{ asset('storage/' . $project['image'])}}" class="card-img-top" alt="image not found">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 class="card-title">{{ $project->title }}</h5>
@@ -27,7 +27,7 @@
                                     </small>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="{{ $project->github_url }}" class="btn btn-primary" target="_blank">
+                                    <a href="{{ $project->github_url }}" class="text-black fs-3" target="_blank">
                                         <i class="fa-brands fa-github"></i>
                                     </a>
                                 </div>

@@ -30,7 +30,7 @@ class ProjectUpsertRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'image' => 'required',
+            'image' => 'required|image|max:3072',
             'github_url' => 'required',
             'languages_used' => 'required',
             'description' => 'required',
