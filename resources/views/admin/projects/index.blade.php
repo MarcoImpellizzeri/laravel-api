@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pt-5">
+    <div class="container py-5">
         <h1 class="fw-bold text-center text-uppercase pb-3">I miei Progetti</h1>
 
-        <div class="row row-col-3">
+        <div class="row row-cols-3 g-4">
             @foreach ($projects as $project)
                 <div class="col">
                     <a href="{{ route('admin.projects.show', $project->slug) }}" class="text-dark">

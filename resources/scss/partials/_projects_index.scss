@@ -1,6 +1,12 @@
 .card {
     height: 100%;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    
+    img {
+        min-height: 206px;
+        object-fit: cover;
+        object-position: top left;
+    }
 
     a {
         text-decoration: none;
