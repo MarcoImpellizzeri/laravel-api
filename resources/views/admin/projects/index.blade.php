@@ -4,7 +4,7 @@
     <div class="container py-5">
         <h1 class="fw-bold text-center text-uppercase pb-3">I miei Progetti</h1>
 
-        <div class="row row-cols-3 g-4">
+        <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach ($projects as $project)
                 <div class="col">
                     <a href="{{ route('admin.projects.show', $project->slug) }}" class="text-dark">

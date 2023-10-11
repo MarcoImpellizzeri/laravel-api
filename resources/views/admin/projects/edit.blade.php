@@ -26,7 +26,12 @@
             </div>
             <div class="mb-3">
                 <label class="form-labal">Carica immagine</label>
-                <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image" accept="image/*">
+                @if ($project->image)
+                    <img src="{{ asset('storage/' . $project->image) }}" alt="" class="img-thumbnail"
+                        style="width: 100px; display: block; margin: 5px 0;">
+                @endif
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+                    accept="image/*">
                 @error('image')
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror

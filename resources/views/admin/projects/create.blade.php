@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-labal">Carica immagien</label>
-                <input type="file" class="form-control @error('thumb') is-invalid @enderror" name="image" accept="image/*">
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" accept="image/*">
                 @error('image')
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror

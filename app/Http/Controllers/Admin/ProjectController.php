@@ -62,8 +62,8 @@ class ProjectController extends Controller
     public function store(ProjectUpsertRequest $request)
     {
         $data = $request->validated();
-        $data['image'] = Storage::put('projects', $data['image']);
         $data["slug"] = $this->generateSlug($data["title"]);
+        $data['image'] = Storage::put('projects', $data['image']);
         $data["languages_used"] = explode(",", $data["languages_used"]);
 
         $project = Project::create($data);
@@ -82,15 +82,12 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project = Project::where('slug', $slug)->first();
-        if (key_exists("image", $data)) {
-            // carico il nuovo file
-            // salvo in una variabile temporanea il percorso del nuovo file
-            $data['image'] = Storage::put('projects', $data['image']);
-
-            // Dopo aver caricato la nuova immagine, PRIMA di aggiornare il db,
-            // cancelliamo dallo storage il vecchio file.
-            // $post->cover_img // vecchio file
-            Storage::delete($project->image);
+        if(isset($data["image"])){
+            if($project->image){
+                Storage::delete($project->image);
+            }
+            
+            $data["image"] = Storage::put("projects", $data["image"]);
         }
 
         // rigenerazione slug
