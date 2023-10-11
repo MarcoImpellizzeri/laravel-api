@@ -77,8 +77,9 @@ class ProjectController extends Controller
     public function edit($slug)
     {
         $project = Project::where('slug', $slug)->first();
+        $types = Type::all();
 
-        return view("admin.projects.edit", ["project" => $project]);
+        return view("admin.projects.edit", ["project" => $project, 'types' => $types]);
     }
 
     public function update(ProjectUpsertRequest $request, $slug)

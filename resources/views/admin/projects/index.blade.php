@@ -9,11 +9,14 @@
                 <div class="col">
                     <a href="{{ route('admin.projects.show', $project->slug) }}" class="text-dark">
                         <div class="card">
-                            <img src="{{ asset('storage/' . $project['image'])}}" class="card-img-top" alt="image not found">
+                            <img src="{{ asset('storage/' . $project['image']) }}" class="card-img-top" alt="image not found">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 class="card-title">{{ $project->title }}</h5>
                                     <p class="card-text">{{ $project->description }}</p>
+                                    <p class="badge mb-4 mt-3">
+                                        {{ $project->types->name }} ({{ $project->types->description }})
+                                    </p>
                                     <small class="card-text">
                                         linguaggi utilizzati:
                                         @foreach ($project->languages_used as $index => $language)

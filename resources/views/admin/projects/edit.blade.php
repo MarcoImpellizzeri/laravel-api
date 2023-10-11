@@ -37,6 +37,14 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label class="form-labal">Tipologia progetto</label>
+                <select class="form-select" name="type_id">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label class="form-labal">Linguaggi usati</label>
                 <input type="text" class="form-control @error('price') is-invalid @enderror" name="languages_used"
                     value="{{ old('languages_used', implode(', ', $project->languages_used)) }}">

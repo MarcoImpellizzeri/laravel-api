@@ -31,7 +31,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-labal">Tipologia progetto</label>
-                <select class="form-select" name="type">
+                <select class="form-select" name="type_id">
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach

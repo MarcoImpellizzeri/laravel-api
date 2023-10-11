@@ -22,7 +22,8 @@ class Project extends Model
         'description',
         'image',
         'languages_used',
-        'github_url'
+        'github_url',
+        'type_id',
     ];
 
     public function type() {
