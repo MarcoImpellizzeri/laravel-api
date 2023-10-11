@@ -24,4 +24,8 @@ class Project extends Model
         'languages_used',
         'github_url'
     ];
+
+    public function type() {
+        return $this->belongsTo(Type::class);
+    }
 }
