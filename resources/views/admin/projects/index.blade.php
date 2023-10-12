@@ -14,20 +14,22 @@
                                 <div>
                                     <h5 class="card-title">{{ $project->title }}</h5>
                                     <p class="card-text">{{ $project->description }}</p>
-                                    <p class="badge mb-4 mt-3">
-                                        {{ $project->types->name }} ({{ $project->types->description }})
-                                    </p>
-                                    <small class="card-text">
-                                        linguaggi utilizzati:
-                                        @foreach ($project->languages_used as $index => $language)
-                                            <div style="margin-bottom: 10px;">
-                                                <div>{{ $language }}</div>
-                                                <div
-                                                    style="width: {{ $project->convertedPercentages[$index] }}%; height: 5px; background-color: #0D6EFD; border-radius: 5px;">
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                    <small class="card-text text-black">
+                                        {{ $project->type->name }} ({{ $project->type->description }})
                                     </small>
+                                    <div>
+                                        <small class="card-text">
+                                            linguaggi utilizzati:
+                                            @foreach ($project->languages_used as $index => $language)
+                                                <div style="margin-bottom: 10px;">
+                                                    <div>{{ $language }}</div>
+                                                    <div
+                                                        style="width: {{ $project->convertedPercentages[$index] }}%; height: 5px; background-color: #0D6EFD; border-radius: 5px;">
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </small>
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <a href="{{ $project->github_url }}" class="text-black fs-3" target="_blank">

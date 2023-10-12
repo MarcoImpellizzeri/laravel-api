@@ -79,12 +79,13 @@ class ProjectController extends Controller
         $project = Project::where('slug', $slug)->first();
         $types = Type::all();
 
-        return view("admin.projects.edit", ["project" => $project, 'types' => $types]);
+        return view("admin.projects.edit", compact("project", "types"));
     }
 
     public function update(ProjectUpsertRequest $request, $slug)
     {
         $data = $request->validated();
+
         $project = Project::where('slug', $slug)->first();
         if(isset($data["image"])){
             if($project->image){

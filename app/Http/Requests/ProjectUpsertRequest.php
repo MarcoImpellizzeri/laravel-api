@@ -34,7 +34,7 @@ class ProjectUpsertRequest extends FormRequest
             'github_url' => 'required',
             'languages_used' => 'required',
             'description' => 'required',
-            "type_id" => "nullable|exists:type,id"
+            "type_id" => "exists:types,id"
         ];
     }
 }

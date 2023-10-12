@@ -17,6 +17,9 @@
             <div class="container-left">
                 <h5>Descrizione:</h5>
                 <p class="card-text">{{ $projects->description }}</p>
+                <small class="card-text text-black">
+                    {{ $projects->type->name }} ({{ $projects->type->description }})
+                </small>
             </div>
             <div class="container-right">
                 <h5>Linguaggi Utilizzati:</h5>

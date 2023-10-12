@@ -20,7 +20,7 @@ return new class extends Migration
             // rendo la colonna type_id una foreign key
             $table->foreign('type_id')
                 ->references('id')
-                ->on('projects')
+                ->on('types')
                 ->onDelete('cascade');
         });
     }
@@ -32,7 +32,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             // rimuoviamo la foreign key
-            $table->dropForeign("projects_type_id_foreign");
+            $table->dropForeign(["projects_type_id_foreign"]);
 
             // si rimuove la colonna type_id
             $table->dropColumn('type_id');
