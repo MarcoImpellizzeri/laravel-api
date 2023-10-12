@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectUpsertRequest;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -58,8 +59,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
+        $technologies = Technology::all();
         
-        return view('admin.projects.create', ['types' => $types]);
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     public function store(ProjectUpsertRequest $request)
@@ -71,6 +73,10 @@ class ProjectController extends Controller
 
         $project = Project::create($data);
 
+        if (key_exists("technologies", $data)) {
+            $project->technologies()->attach($data["technologies"]);
+        }
+
         return redirect()->route('admin.projects.show', $project->slug);
     }
 
@@ -78,8 +84,9 @@ class ProjectController extends Controller
     {
         $project = Project::where('slug', $slug)->first();
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view("admin.projects.edit", compact("project", "types"));
+        return view("admin.projects.edit", compact("project", "types", "technologies"));
     }
 
     public function update(ProjectUpsertRequest $request, $slug)
@@ -101,6 +108,7 @@ class ProjectController extends Controller
         }
 
         // $data["languages_used"] = explode(",", $data["languages_used"]);
+        $project->technologies()->sync($data["technologies"]);
 
         $project->update($data);
         return redirect()->route('admin.projects.show', $project->slug);
@@ -113,6 +121,7 @@ class ProjectController extends Controller
             Storage::delete($project->image);
         }
 
+        $project->technologies()->detach();
         $project->delete();
 
         return redirect()->route('admin.projects.index');

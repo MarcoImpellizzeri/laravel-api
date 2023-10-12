@@ -13,10 +13,16 @@
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
                                     <h5 class="card-title">{{ $project->title }}</h5>
-                                    <p class="card-text">{{ $project->description }}</p>
-                                    <small class="card-text text-black">
-                                        {{ $project->type->name }} ({{ $project->type->description }})
+                                    <small class="card-text text-black badge ">
+                                        {{ $project->type->name }}
                                     </small>
+                                    <div>
+                                        @foreach ($project->technologies as $technology)
+                                            <div class="badge" style="background-color: {{ $technology->color }}">{{ $technology->name }}</div>
+                                        @endforeach
+                                    </div>
+                                    <p class="card-text">{{ $project->description }}</p>
+                                    
                                     <div>
                                         {{-- <small class="card-text">
                                             linguaggi utilizzati:

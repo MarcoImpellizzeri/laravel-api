@@ -33,7 +33,8 @@ class ProjectUpsertRequest extends FormRequest
             'image' => 'nullable',
             'github_url' => 'required',
             'description' => 'required',
-            "type_id" => "exists:types,id"
+            "type_id" => "exists:types,id",
+            "technologies" => 'nullable',
         ];
     }
 }

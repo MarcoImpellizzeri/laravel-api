@@ -17,11 +17,22 @@
             <div class="container-left">
                 <h5>Descrizione:</h5>
                 <p class="card-text">{{ $projects->description }}</p>
-                <small class="card-text text-black">
-                    {{ $projects->type->name }} ({{ $projects->type->description }})
-                </small>
             </div>
             <div class="container-right">
+                <h5>
+                    {{ $projects->type->name }}
+                </h5>
+                <div>
+                    <h6>Linguaggi utilizzati:</h6>
+                    @foreach ($projects->technologies as $technology)
+                        <div class="badge" style="background-color: {{ $technology->color }}">{{ $technology->name }}</div>
+                    @endforeach
+                    <div class="d-flax my-3 rounded" style="width: 100%">
+                        @foreach ($projects->technologies as $technology)
+                            <div class="" style="background-color: {{ $technology->color }}; height: 10px; "></div>
+                        @endforeach
+                    </div>
+                </div>
                 {{-- <h5>Linguaggi Utilizzati:</h5>
                 @foreach ($projects->languages_used as $index => $language)
                     <div style=" align-items: center; margin-bottom: 10px;">

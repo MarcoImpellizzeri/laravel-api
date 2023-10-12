@@ -24,7 +24,8 @@
             </div>
             <div class="mb-3">
                 <label class="form-labal">Carica immagien</label>
-                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" accept="image/*">
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+                    accept="image/*">
                 @error('image')
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror
@@ -37,6 +38,32 @@
                     @endforeach
                 </select>
             </div>
+
+            {{-- linguaggio --}}
+            <div class="mb-3">
+                <label class="form-labal">Seleziona linguaggi</label>
+
+                {{-- <div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="technology[]" role="switch"
+                                id="{{ $technology->id }}" value="{{ $technology->id }}">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">{{ $technology->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div> --}}
+                <div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="technologies[]" role="switch"
+                                id="{{ $technology->id }}" value="{{ $technology->id }}">
+                            <label class="form-check-label" for="{{ $technology->id }}">{{ $technology->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
             {{-- <div class="mb-3">
                 <label class="form-labal">Linguaggi usati</label>
                 <input type="text" class="form-control @error('price') is-invalid @enderror" name="languages_used"

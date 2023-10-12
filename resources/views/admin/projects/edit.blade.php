@@ -9,6 +9,7 @@
 
             @method('put')
 
+            {{-- titolo --}}
             <div class="mb-3">
                 <label class="form-labal">Titolo</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
@@ -17,6 +18,8 @@
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            {{-- Descrizione --}}
             <div class="mb-3">
                 <label class="form-labal">Descrizione</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description">{{ old('description', $project->description) }}</textarea>
@@ -24,6 +27,8 @@
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            {{-- immagine --}}
             <div class="mb-3">
                 <label class="form-labal">Carica immagine</label>
                 @if ($project->image)
@@ -36,16 +41,35 @@
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            {{-- linguaggio --}}
+            <div class="mb-3">
+                <label class="form-labal">Seleziona linguaggi</label>
+
+                <div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="technologies[]" role="switch"
+                                id="{{ $technology->id }}" value="{{ $technology->id }}"
+                                {{ $project->technologies?->contains($technology) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="{{ $technology->id }}">{{ $technology->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- Tipologia --}}
             <div class="mb-3">
                 <label class="form-labal">Tipologia progetto</label>
                 <select class="form-select" name="type_id">
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}" {{ $project->type_id === $type->id ? 'selected' : ''}}>
+                        <option value="{{ $type->id }}" {{ $project->type_id === $type->id ? 'selected' : '' }}>
                             {{ $type->name }}
                         </option>
                     @endforeach
                 </select>
             </div>
+
             {{-- <div class="mb-3">
                 <label class="form-labal">Linguaggi usati</label>
                 <input type="text" class="form-control @error('price') is-invalid @enderror" name="languages_used"
@@ -54,6 +78,8 @@
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror
             </div> --}}
+
+            {{-- github link --}}
             <div class="mb-3">
                 <label class="form-labal">Link GitHub del progetto</label>
                 <input type="text" class="form-control @error('price') is-invalid @enderror" name="github_url"
