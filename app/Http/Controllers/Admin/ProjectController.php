@@ -29,20 +29,20 @@ class ProjectController extends Controller
         return $slug;
     }
 
-    public function extractPercentages($languages_used)
-    {
-        return array_map(function ($language) {
-            return floatval(preg_replace('/[^0-9.]/', '', $language));
-        }, $languages_used);
-    }
+    // public function extractPercentages($languages_used)
+    // {
+    //     return array_map(function ($language) {
+    //         return floatval(preg_replace('/[^0-9.]/', '', $language));
+    //     }, $languages_used);
+    // }
 
     public function index()
     {
         $projects = Project::all();
 
-        foreach ($projects as $project) {
-            $project->convertedPercentages = $this->extractPercentages($project->languages_used);
-        }
+        // foreach ($projects as $project) {
+        //     $project->convertedPercentages = $this->extractPercentages($project->languages_used);
+        // }
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -50,7 +50,7 @@ class ProjectController extends Controller
     public function show($slug)
     {
         $projects = Project::where('slug', $slug)->first();
-        $projects->convertedPercentages = $this->extractPercentages($projects->languages_used);
+        // $projects->convertedPercentages = $this->extractPercentages($projects->languages_used);
 
         return view('admin.projects.show', compact('projects'));
     }
@@ -67,7 +67,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data["slug"] = $this->generateSlug($data["title"]);
         $data['image'] = Storage::put('projects', $data['image']);
-        $data["languages_used"] = explode(",", $data["languages_used"]);
+        // $data["languages_used"] = explode(",", $data["languages_used"]);
 
         $project = Project::create($data);
 
@@ -100,7 +100,7 @@ class ProjectController extends Controller
             $data["slug"] = $this->generateSlug($data["title"]);
         }
 
-        $data["languages_used"] = explode(",", $data["languages_used"]);
+        // $data["languages_used"] = explode(",", $data["languages_used"]);
 
         $project->update($data);
         return redirect()->route('admin.projects.show', $project->slug);

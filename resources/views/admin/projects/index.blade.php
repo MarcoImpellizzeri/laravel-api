@@ -18,7 +18,7 @@
                                         {{ $project->type->name }} ({{ $project->type->description }})
                                     </small>
                                     <div>
-                                        <small class="card-text">
+                                        {{-- <small class="card-text">
                                             linguaggi utilizzati:
                                             @foreach ($project->languages_used as $index => $language)
                                                 <div style="margin-bottom: 10px;">
@@ -28,7 +28,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                        </small>
+                                        </small> --}}
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">

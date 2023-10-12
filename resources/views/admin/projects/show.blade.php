@@ -22,7 +22,7 @@
                 </small>
             </div>
             <div class="container-right">
-                <h5>Linguaggi Utilizzati:</h5>
+                {{-- <h5>Linguaggi Utilizzati:</h5>
                 @foreach ($projects->languages_used as $index => $language)
                     <div style=" align-items: center; margin-bottom: 10px;">
                         <div>{{ $language }}</div>
@@ -30,7 +30,7 @@
                             style="margin-top: 2px; width: {{ $projects->convertedPercentages[$index] }}%; height: 5px; background-color: #0D6EFD; border-radius: 5px;">
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
         <div class="d-flex ps-5">

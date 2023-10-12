@@ -21,7 +21,6 @@ class Project extends Model
         'slug',
         'description',
         'image',
-        'languages_used',
         'github_url',
         'type_id',
     ];

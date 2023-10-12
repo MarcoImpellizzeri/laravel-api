@@ -32,7 +32,6 @@ class ProjectUpsertRequest extends FormRequest
             'title' => 'required',
             'image' => 'nullable',
             'github_url' => 'required',
-            'languages_used' => 'required',
             'description' => 'required',
             "type_id" => "exists:types,id"
         ];

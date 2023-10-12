@@ -46,14 +46,14 @@
                     @endforeach
                 </select>
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="form-labal">Linguaggi usati</label>
                 <input type="text" class="form-control @error('price') is-invalid @enderror" name="languages_used"
                     value="{{ old('languages_used', implode(', ', $project->languages_used)) }}">
                 @error('languages_used')
                     <div class="alert text-danger">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
             <div class="mb-3">
                 <label class="form-labal">Link GitHub del progetto</label>
                 <input type="text" class="form-control @error('price') is-invalid @enderror" name="github_url"
