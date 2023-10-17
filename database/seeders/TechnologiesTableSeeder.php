@@ -13,8 +13,8 @@ class TechnologiesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $technologies = ['HTML', 'CSS', 'JS', 'PHP', 'Vue.js', 'SASS', 'Bootstrap', 'Laravel'];
-        $colors = ['#E44D26', '#2965F1', '#F0DB4F', '#787CB5', '#4FC08D', '#CC6699', '#563D7C', '#FF2D20'];
+        $technologies = ['HTML', 'CSS', 'JS', 'PHP', 'Vue.js', 'SCSS', 'Bootstrap', 'Laravel', 'Blade', 'Other'];
+        $colors = ['#E44D26', '#2965F1', '#F0DB4F', '#787CB5', '#4FC08D', '#CC6699', '#563D7C', '#FF2D20', '#F7523F', '#5B5D5E'];
 
         foreach ($technologies as $index => $technology) {
             Technology::create([
